@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction - Pourquoi ce sujet ?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            min-height: 865px;
+            position: relative;
+            background-color: #f5f9ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 100px;
+        }
+        .key-points {
+            margin-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .key-point:hover {
+            transform: translateY(-5px);
+        }
+        .key-point-icon {
+            color: #007BFF;
+            margin-right: 25px;
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+        .key-point-text {
+            font-size: 22px;
+            line-height: 1.6;
+        }
+        .key-point-text strong {
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .stat-box {
+            background-color: rgba(0, 123, 255, 0.1);
+            border-left: 6px solid #007BFF;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 0px;
+            display: flex;
+            align-items: center;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-right: 20px;
+        }
+        .stat-text {
+            font-size: 22px;
+            line-height: 1.4;
+        }
+        .process-diagram {
+            background-color: white;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .process-step:hover {
+            transform: translateY(-8px);
+        }
+        .step-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+        .step-icon .material-icons {
+            font-size: 60px;
+        }
+        .step-text {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .process-arrow {
+            position: absolute;
+            top: 60px;
+            color: #007BFF;
+            font-size: 50px;
+            z-index: 1;
+        }
+        .arrow-1 {
+            left: calc(30% - 40px);
+        }
+        .arrow-2 {
+            left: calc(70% - 40px);
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        .nav-link {
+            background-color: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-link .material-icons {
+            font-size: 30px;
+            margin: 0;
+            color: #007BFF;
+        }
+        .nav-link.prev {
+            margin-right: auto;
+        }
+        .nav-link.next {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Introduction – Pourquoi ce sujet ?</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="key-points">
+                    <div class="key-point">
+                        <i class="material-icons key-point-icon">lightbulb</i>
+                        <div class="key-point-text">
+                            Le déploiement n'est pas juste <strong>technique</strong> : c'est la clé pour rendre votre idée <strong>accessible au monde</strong> !
+                        </div>
+                    </div>
+                    <div class="key-point">
+                        <i class="material-icons key-point-icon">flag</i>
+                        <div class="key-point-text">
+                            <strong>Objectifs</strong> : Comprendre les étapes, choisir les bons outils, et booster le succès (trafic, conversions, SEO)
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">75%</div>
+                    <div class="stat-text">des sites échouent par mauvais déploiement</div>
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="process-diagram">
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">lightbulb</i>
+                            </div>
+                            <div class="step-text">Idée</div>
+                        </div>
+                        <i class="material-icons process-arrow arrow-1">arrow_forward</i>
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">cloud_upload</i>
+                            </div>
+                            <div class="step-text">Déploiement</div>
+                        </div>
+                        <i class="material-icons process-arrow arrow-2">arrow_forward</i>
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">trending_up</i>
+                            </div>
+                            <div class="step-text">Succès</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="diapo1.html" class="nav-link prev">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a href="diapo3.html" class="nav-link next">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

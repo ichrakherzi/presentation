@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 5 - Installation du Certificat SSL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            min-height: 865px;
+            position: relative;
+            background-color: #f5f9ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .right-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .key-points {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 12px;
+            padding: 23px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .key-point:hover {
+            transform: translateY(-5px);
+        }
+        .key-point-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .key-point-icon .material-icons {
+            font-size: 30px;
+        }
+        .key-point-content {
+            flex-grow: 1;
+        }
+        .key-point-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 8px;
+        }
+        .key-point-details {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .key-point-details strong {
+            color: #007BFF;
+            font-weight: 500;
+        }
+        .warning-box {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        .warning-box .material-icons {
+            color: #FFC107;
+            margin-right: 15px;
+            font-size: 28px;
+        }
+        .warning-box-text {
+            font-size: 18px;
+        }
+        .warning-box-text strong {
+            color: #FFC107;
+            font-weight: 600;
+        }
+        .ssl-comparison {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            height: 610px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .comparison-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .comparison-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        .comparison-item {
+            width: 45%;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .http-item {
+            background-color: rgba(255, 82, 82, 0.1);
+            border: 2px solid rgba(255, 82, 82, 0.3);
+        }
+        .https-item {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+        }
+        .protocol-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .http-icon {
+            background-color: rgba(255, 82, 82, 0.2);
+            color: #FF5252;
+        }
+        .https-icon {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+        .protocol-icon .material-icons {
+            font-size: 40px;
+        }
+        .protocol-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .http-name {
+            color: #FF5252;
+        }
+        .https-name {
+            color: #4CAF50;
+        }
+        .protocol-details {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .protocol-details strong {
+            font-weight: 600;
+        }
+        .arrow-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .arrow-container .material-icons {
+            color: #007BFF;
+            font-size: 40px;
+        }
+        .ssl-steps {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .ssl-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+        .step-number {
+            background-color: #007BFF;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .step-text {
+            font-size: 16px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        .nav-link {
+            background-color: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-link .material-icons {
+            font-size: 30px;
+            margin: 0;
+            color: #007BFF;
+        }
+        .nav-link.prev {
+            margin-right: auto;
+        }
+        .nav-link.next {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Étape 5 – Installation du Certificat SSL</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="key-points">
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">verified</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Let's Encrypt</div>
+                            <div class="key-point-details">
+                                <strong>Gratuit</strong> et automatique<br>
+                                Reconnu par tous les navigateurs<br>
+                                Valide 90 jours avec renouvellement automatique
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">security</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Sécurité & SEO</div>
+                            <div class="key-point-details">
+                                Chiffrement des données entre utilisateur et serveur<br>
+                                <strong>Google favorise</strong> les sites HTTPS<br>
+                                Indispensable pour l'e-commerce et formulaires
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">autorenew</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Auto-renouvellement</div>
+                            <div class="key-point-details">
+                                Configurez des tâches CRON pour le renouvellement<br>
+                                Testez régulièrement le renouvellement<br>
+                                Surveillance des alertes d'expiration
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <i class="material-icons">warning</i>
+                    <div class="warning-box-text">
+                        Sans SSL, <strong>Google pénalise votre site</strong> dans les résultats de recherche !
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-content">
+                <div class="ssl-comparison">
+                    <div class="comparison-header">HTTP vs HTTPS</div>
+                    
+                    <div class="comparison-container">
+                        <div class="comparison-item http-item">
+                            <div class="protocol-icon http-icon">
+                                <i class="material-icons">http</i>
+                            </div>
+                            <div class="protocol-name http-name">HTTP</div>
+                            <div class="protocol-details">
+                                <strong>Non sécurisé</strong><br>
+                                Données transmises en clair<br>
+                                Navigateur affiche "Non sécurisé"
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-item https-item">
+                            <div class="protocol-icon https-icon">
+                                <i class="material-icons">https</i>
+                            </div>
+                            <div class="protocol-name https-name">HTTPS</div>
+                            <div class="protocol-details">
+                                <strong>Sécurisé</strong><br>
+                                Données chiffrées<br>
+                                Cadenas vert dans le navigateur
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-container">
+                        <i class="material-icons">arrow_downward</i>
+                    </div>
+                    
+                    <div class="ssl-steps">
+                        <div class="ssl-step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Générez le certificat via Certbot</div>
+                        </div>
+                        <div class="ssl-step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Installez sur votre serveur web</div>
+                        </div>
+                        <div class="ssl-step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Redirigez HTTP vers HTTPS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="diapo6.html" class="nav-link prev">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a href="diapo8.html" class="nav-link next">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 4 - Configuration du Nom de Domaine et DNS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            min-height: 865px;
+            position: relative;
+            background-color: #f5f9ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .right-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .key-points {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .key-point:hover {
+            transform: translateY(-5px);
+        }
+        .key-point-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .key-point-icon .material-icons {
+            font-size: 30px;
+        }
+        .key-point-content {
+            flex-grow: 1;
+        }
+        .key-point-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 8px;
+        }
+        .key-point-details {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .key-point-details strong {
+            color: #007BFF;
+            font-weight: 500;
+        }
+        .info-box {
+            background-color: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007BFF;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .info-box .material-icons {
+            color: #007BFF;
+            margin-right: 15px;
+            font-size: 28px;
+        }
+        .info-box-text {
+            font-size: 18px;
+        }
+        .info-box-text strong {
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .dns-diagram {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .dns-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .dns-step {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .dns-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .dns-icon .material-icons {
+            font-size: 35px;
+        }
+        .dns-content {
+            flex-grow: 1;
+        }
+        .dns-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 5px;
+        }
+        .dns-description {
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .dns-records {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 40px;
+        }
+        .dns-record {
+            background-color: #f5f9ff;
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            text-align: center;
+        }
+        .record-type {
+            font-size: 24px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .record-description {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        .nav-link {
+            background-color: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-link .material-icons {
+            font-size: 30px;
+            margin: 0;
+            color: #007BFF;
+        }
+        .nav-link.prev {
+            margin-right: auto;
+        }
+        .nav-link.next {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Étape 4 – Configuration du Nom de Domaine et DNS</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="key-points">
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">shopping_cart</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Achat d'un domaine</div>
+                            <div class="key-point-details">
+                                <strong>Registrars</strong> : GoDaddy, Namecheap, OVH<br>
+                                Coût moyen : <strong>10-15€/an</strong><br>
+                                Choisissez un nom <strong>simple et mémorable</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">settings</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Configuration DNS</div>
+                            <div class="key-point-details">
+                                <strong>Enregistrement A</strong> : IP de votre serveur<br>
+                                <strong>CNAME</strong> : sous-domaines (www, blog)<br>
+                                <strong>MX</strong> : serveurs de messagerie
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">schedule</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Temps de propagation</div>
+                            <div class="key-point-details">
+                                <strong>1-48 heures</strong> selon les serveurs DNS<br>
+                                Vérifiez avec <strong>nslookup</strong> ou outils en ligne<br>
+                                Patience nécessaire avant activation complète
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                    <i class="material-icons">public</i>
+                    <div class="info-box-text">
+                        Votre adresse web : <strong>simple, mémorable et professionnelle</strong>
+                    </div>
+                </div>
+                </div>
+                
+                
+            </div>
+            
+            <div class="right-content">
+                <div class="dns-diagram">
+                    <div class="dns-flow">
+                        <div class="dns-step">
+                            <div class="dns-icon">
+                                <i class="material-icons">language</i>
+                            </div>
+                            <div class="dns-content">
+                                <div class="dns-title">Nom de domaine</div>
+                                <div class="dns-description">L'adresse unique de votre site sur Internet</div>
+                            </div>
+                        </div>
+                        
+                        <div class="dns-step">
+                            <div class="dns-icon">
+                                <i class="material-icons">dns</i>
+                            </div>
+                            <div class="dns-content">
+                                <div class="dns-title">Serveur DNS</div>
+                                <div class="dns-description">Traduit le nom de domaine en adresse IP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="dns-step">
+                            <div class="dns-icon">
+                                <i class="material-icons">storage</i>
+                            </div>
+                            <div class="dns-content">
+                                <div class="dns-title">Hébergeur</div>
+                                <div class="dns-description">Stocke les fichiers de votre site web</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dns-records">
+                        <div class="dns-record">
+                            <div class="record-type">A</div>
+                            <div class="record-description">Domaine → IP<br>Exemple: monsite.fr → 192.168.1.1</div>
+                        </div>
+                        <div class="dns-record">
+                            <div class="record-type">CNAME</div>
+                            <div class="record-description">Sous-domaine → Domaine<br>Exemple: www.monsite.fr → monsite.fr</div>
+                        </div>
+                        <div class="dns-record">
+                            <div class="record-type">MX</div>
+                            <div class="record-description">Email → Serveur mail<br>Exemple: @monsite.fr → mail.monsite.fr</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="diapo5.html" class="nav-link prev">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a href="diapo7.html" class="nav-link next">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

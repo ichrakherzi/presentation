@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusion - Clés du Succès Global</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            min-height: 865px;
+            position: relative;
+            background-color: #f5f9ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            max-height: 600px;
+        }
+        .process-summary {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            margin-top: 60px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            max-height: 320px;
+        }
+        .summary-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 22%;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .process-step:hover {
+            transform: translateY(-8px);
+        }
+        .step-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+        .step-icon .material-icons {
+            font-size: 35px;
+        }
+        .step-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .step-desc {
+            font-size: 14px;
+            text-align: center;
+            color: #555;
+        }
+        .process-arrow {
+            position: absolute;
+            top: 35px;
+            color: #007BFF;
+            font-size: 30px;
+            z-index: 1;
+        }
+        .arrow-1 {
+            left: calc(22% + 10px);
+        }
+        .arrow-2 {
+            left: calc(44% + 10px);
+        }
+        .arrow-3 {
+            left: calc(66% + 10px);
+        }
+        .cta-box {
+            background-color: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007BFF;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .cta-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .cta-title .material-icons {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .cta-text {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .cta-text strong {
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .success-image {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            height: 350px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .success-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .next-steps {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+        }
+        .next-steps-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .next-steps-title .material-icons {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .steps-list {
+            list-style-type: none;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .step-item .material-icons {
+            color: #007BFF;
+            margin-right: 10px;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .step-item-text {
+            line-height: 1.4;
+        }
+        .step-item-text strong {
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        .nav-link {
+            background-color: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-link .material-icons {
+            font-size: 30px;
+            margin: 0;
+            color: #007BFF;
+        }
+        .nav-link.prev {
+            margin-right: auto;
+        }
+        .nav-link.next {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Conclusion – Clés du Succès Global</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="process-summary">
+                    <div class="summary-title">Récapitulatif du processus complet</div>
+                    
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">lightbulb</i>
+                            </div>
+                            <div class="step-name">Idée</div>
+                            <div class="step-desc">Conception et préparation</div>
+                        </div>
+                        <i class="material-icons process-arrow arrow-1">arrow_foward</i>
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">cloud</i>
+                            </div>
+                            <div class="step-name">Fournisseur</div>
+                            <div class="step-desc">Hébergement et outils</div>
+                        </div>
+                        <i class="material-icons process-arrow arrow-2">arrow_forard</i>
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">upload</i>
+                            </div>
+                            <div class="step-name">Déploiement</div>
+                            <div class="step-desc">Mise en ligne technique</div>
+                        </div>
+                        <i class="material-icons process-arrow arrow-3">arrow_forwrd</i>
+                        <div class="process-step">
+                            <div class="step-icon">
+                                <i class="material-icons">trending_up</i>
+                            </div>
+                            <div class="step-name">Succès</div>
+                            <div class="step-desc">Optimisation continue</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-box">
+                    <div class="cta-title">
+                        <i class="material-icons">rocket_launch</i>
+                        Appel à l'action
+                    </div>
+                    <div class="cta-text">
+                        Confiez votre projet à des <strong>professionnels</strong> si complexe<br>
+                        <strong>Platane</strong> pour une expertise complète<br>
+                        <strong>Commencez petit</strong> et évoluez progressivement
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-content">
+                <div class="success-image">
+                    <img src="https://www.webxy.com/wp-content/uploads/2023/09/Mise-en-production-site-ecommerce-Webxy.jpg" alt="Succès du déploiement de site web">
+                </div>
+                
+                <div class="next-steps">
+                    <div class="next-steps-title">
+                        <i class="material-icons">stars</i>
+                        Prochaines étapes recommandées
+                    </div>
+                    <ul class="steps-list">
+                        <li class="step-item">
+                            <i class="material-icons">check_circle</i>
+                            <div class="step-item-text">
+                                <strong>Analytique</strong> : Suivi des performances et KPI
+                            </div>
+                        </li>
+                        <li class="step-item">
+                            <i class="material-icons">check_circle</i>
+                            <div class="step-item-text">
+                                <strong>Optimisation SEO</strong> : Amélioration continue du référencement
+                            </div>
+                        </li>
+                        <li class="step-item">
+                            <i class="material-icons">check_circle</i>
+                            <div class="step-item-text">
+                                <strong>Évolution</strong> : Ajout de fonctionnalités basées sur retours utilisateurs
+                            </div>
+                        </li>
+                        <li class="step-item">
+                            <i class="material-icons">check_circle</i>
+                            <div class="step-item-text">
+                                <strong>Formation</strong> : Documentation et transfert de compétences
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="diapo10.html" class="nav-link prev">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a href="diapo12.html" class="nav-link next">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+
+</body></html>

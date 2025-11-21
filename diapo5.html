@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 3 - Transfert des Fichiers vers l'Hébergeur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            min-height: 865px;
+            position: relative;
+            background-color: #f5f9ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .right-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .key-points {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .key-point:hover {
+            transform: translateY(-5px);
+        }
+        .key-point-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .key-point-icon .material-icons {
+            font-size: 30px;
+        }
+        .key-point-content {
+            flex-grow: 1;
+        }
+        .key-point-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 8px;
+        }
+        .key-point-details {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+        .key-point-details strong {
+            color: #007BFF;
+            font-weight: 500;
+        }
+        .tool-box {
+            background-color: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007BFF;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .tool-box .material-icons {
+            color: #007BFF;
+            margin-right: 15px;
+            font-size: 28px;
+        }
+        .tool-box-text {
+            font-size: 18px;
+        }
+        .tool-box-text strong {
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .transfer-diagram {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .transfer-steps {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .transfer-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+        }
+        .step-icon-container {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+        .step-icon-container .material-icons {
+            font-size: 50px;
+        }
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .step-details {
+            font-size: 16px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .transfer-arrow {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .transfer-arrow .material-icons {
+            color: #007BFF;
+            font-size: 40px;
+        }
+        .file-types {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 100px;
+        }
+        .file-type {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f5f9ff;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        .file-type .material-icons {
+            color: #007BFF;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .file-type-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        .nav-link {
+            background-color: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-link .material-icons {
+            font-size: 30px;
+            margin: 0;
+            color: #007BFF;
+        }
+        .nav-link.prev {
+            margin-right: auto;
+        }
+        .nav-link.next {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Étape 3 – Transfert des Fichiers vers l'Hébergeur</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="key-points">
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">security</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Protocole sécurisé</div>
+                            <div class="key-point-details">
+                                <strong>SFTP</strong> (Secure FTP) plutôt que FTP<br>
+                                Chiffrement des données et authentification sécurisée<br>
+                                Protège vos identifiants et fichiers
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">folder</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Organisation des fichiers</div>
+                            <div class="key-point-details">
+                                Structure claire : <strong>/public</strong> pour les assets<br>
+                                Séparez le code des fichiers multimédias<br>
+                                Nommez les fichiers de manière cohérente
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-point">
+                        <div class="key-point-icon">
+                            <i class="material-icons">admin_panel_settings</i>
+                        </div>
+                        <div class="key-point-content">
+                            <div class="key-point-title">Permissions</div>
+                            <div class="key-point-details">
+                                <strong>755</strong> pour les dossiers (lecture/écriture/exécution)<br>
+                                <strong>644</strong> pour les fichiers (lecture/écriture)<br>
+                                Évitez 777 qui crée des failles de sécurité
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-content">
+                <div class="transfer-diagram">
+                    <div class="transfer-steps">
+                        <div class="transfer-step">
+                            <div class="step-icon-container">
+                                <i class="material-icons">computer</i>
+                            </div>
+                            <div class="step-title">Local</div>
+                            <div class="step-details">
+                                Vos fichiers sur votre ordinateur<br>
+                                Testés et prêts au déploiement
+                            </div>
+                        </div>
+                        
+                        <div class="transfer-step">
+                            <div class="step-icon-container">
+                                <i class="material-icons">dns</i>
+                            </div>
+                            <div class="step-title">Serveur</div>
+                            <div class="step-details">
+                                Hébergeur distant<br>
+                                Accessible depuis le web
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transfer-arrow">
+                        <i class="material-icons">upload</i>
+                    </div>
+                    
+                    <div class="file-types">
+                        <div class="file-type">
+                            <i class="material-icons">code</i>
+                            <div class="file-type-name">HTML/CSS/JS</div>
+                        </div>
+                        <div class="file-type">
+                            <i class="material-icons">image</i>
+                            <div class="file-type-name">Images</div>
+                        </div>
+                        <div class="file-type">
+                            <i class="material-icons">database</i>
+                            <div class="file-type-name">Base de données</div>
+                        </div>
+                        <div class="file-type">
+                            <i class="material-icons">description</i>
+                            <div class="file-type-name">Documents</div>
+                        </div>
+                    </div>
+                    <div class="tool-box">
+                    <i class="material-icons">build</i>
+                    <div class="tool-box-text">
+                        Outil recommandé : <strong>FileZilla</strong> (gratuit et multiplateforme)
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="diapo4.html" class="nav-link prev">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a href="diapo6.html" class="nav-link next">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

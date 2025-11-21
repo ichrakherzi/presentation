@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 6 - Tests et Vérifications Post-Déploiement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100%;
+            min-height: 865px;
+            position: relative;
+            background-color: #f5f9ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 40px 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+            padding: 0 70px 40px;
+        }
+        .left-content {
+            flex: 1;
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .right-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .test-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .test-category {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        .test-category:hover {
+            transform: translateY(-5px);
+        }
+        .category-icon {
+            background-color: #e6f7ff;
+            color: #007BFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .category-icon .material-icons {
+            font-size: 30px;
+        }
+        .category-content {
+            flex-grow: 1;
+        }
+        .category-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .category-items {
+            list-style-type: none;
+        }
+        .category-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        .category-item .material-icons {
+            color: #007BFF;
+            font-size: 18px;
+            margin-right: 8px;
+        }
+        .tools-box {
+            background-color: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid #007BFF;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: auto;
+            display: flex;
+            max-width: 600px;
+            align-items: center;
+        }
+        .tools-box .material-icons {
+            color: #007BFF;
+            margin-right: 15px;
+            font-size: 28px;
+        }
+        .tools-box-text {
+            font-size: 18px;
+        }
+        .tools-box-text strong {
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .checklist-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+        .checklist-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #007BFF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .checklist-items {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .checklist-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .checklist-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background-color: #f5f9ff;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 5px;
+        }
+        .checklist-item .material-icons {
+            color: #4CAF50;
+            margin-right: 10px;
+            font-size: 22px;
+        }
+        .checklist-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .browser-screenshots {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .browser-screenshot {
+            background-color: #f5f9ff;
+            border-radius: 8px;
+            padding: 10px;
+            width: 30%;
+            text-align: center;
+        }
+        .browser-icon {
+            font-size: 24px;
+            color: #007BFF;
+            margin-bottom: 5px;
+        }
+        .browser-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .note-box {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .note-box .material-icons {
+            color: #FFC107;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .note-text {
+            font-size: 14px;
+            font-style: italic;
+        }
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 10;
+        }
+        .nav-link {
+            background-color: rgba(0, 123, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
+        .nav-link .material-icons {
+            font-size: 30px;
+            margin: 0;
+            color: #007BFF;
+        }
+        .nav-link.prev {
+            margin-right: auto;
+        }
+        .nav-link.next {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="title">Étape 6 – Tests et Vérifications Post-Déploiement</h1>
+        </div>
+        <div class="content">
+            <div class="left-content">
+                <div class="test-categories">
+                    <div class="test-category">
+                        <div class="category-icon">
+                            <i class="material-icons">devices</i>
+                        </div>
+                        <div class="category-content">
+                            <div class="category-title">Compatibilité</div>
+                            <ul class="category-items">
+                                <li class="category-item">
+                                    <i class="material-icons">desktop_windows</i>
+                                    Navigateurs (Chrome, Safari, Firefox)
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">smartphone</i>
+                                    Mobiles (iOS, Android)
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">tablet_mac</i>
+                                    Tablettes
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="test-category">
+                        <div class="category-icon">
+                            <i class="material-icons">speed</i>
+                        </div>
+                        <div class="category-content">
+                            <div class="category-title">Performance</div>
+                            <ul class="category-items">
+                                <li class="category-item">
+                                    <i class="material-icons">timer</i>
+                                    Temps de chargement
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">analytics</i>
+                                    Google PageSpeed Insights
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">compress</i>
+                                    Optimisation des images
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="test-category">
+                        <div class="category-icon">
+                            <i class="material-icons">touch_app</i>
+                        </div>
+                        <div class="category-content">
+                            <div class="category-title">Fonctionnalités</div>
+                            <ul class="category-items">
+                                <li class="category-item">
+                                    <i class="material-icons">link</i>
+                                    Liens internes et externes
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">contact_mail</i>
+                                    Formulaires de contact
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">shopping_cart</i>
+                                    Processus d'achat (e-commerce)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="test-category">
+                        <div class="category-icon">
+                            <i class="material-icons">security</i>
+                        </div>
+                        <div class="category-content">
+                            <div class="category-title">Sécurité</div>
+                            <ul class="category-items">
+                                <li class="category-item">
+                                    <i class="material-icons">https</i>
+                                    Certificat SSL valide
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">privacy_tip</i>
+                                    Protection contre les vulnérabilités
+                                </li>
+                                <li class="category-item">
+                                    <i class="material-icons">admin_panel_settings</i>
+                                    Permissions des fichiers
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tools-box">
+                    <i class="material-icons">build</i>
+                    <div class="tools-box-text">
+                        Outils recommandés : <strong>GTmetrix</strong> pour la performance, <strong>Lighthouse</strong> pour l'audit global
+                    </div>
+                </div>
+                </div>
+                
+                
+            </div>
+            
+            <div class="right-content">
+                <div class="checklist-container">
+                    <div class="checklist-header">Checklist de Vérification</div>
+                    
+                    <div class="checklist-items">
+                        <div class="checklist-row">
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Affichage correct sur tous les navigateurs</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Design responsive sur mobile</div>
+                            </div>
+                        </div>
+                        
+                        <div class="checklist-row">
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">HTTPS activé sur toutes les pages</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Temps de chargement < 3 secondes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="checklist-row">
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Tous les formulaires fonctionnent</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Images optimisées et chargées</div>
+                            </div>
+                        </div>
+                        
+                        <div class="checklist-row">
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Analytics correctement configuré</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="material-icons">check_circle</i>
+                                <div class="checklist-text">Plan de sauvegarde en place</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="browser-screenshots">
+                        <div class="browser-screenshot">
+                            <i class="material-icons browser-icon">computer</i>
+                            <div class="browser-name">Desktop</div>
+                        </div>
+                        <div class="browser-screenshot">
+                            <i class="material-icons browser-icon">tablet_mac</i>
+                            <div class="browser-name">Tablette</div>
+                        </div>
+                        <div class="browser-screenshot">
+                            <i class="material-icons browser-icon">smartphone</i>
+                            <div class="browser-name">Mobile</div>
+                        </div>
+                    </div>
+                    
+                    <div class="note-box">
+                        <i class="material-icons">lightbulb</i>
+                        <div class="note-text">
+                            Testez comme un utilisateur exigeant – ça sauve des vies !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="diapo7.html" class="nav-link prev">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a href="diapo9.html" class="nav-link next">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
